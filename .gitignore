@@ -1,0 +1,5 @@
+*.exe
+build/
+release_building/output/
+.AppImage
+ATSTDLIB_EXPORT_X86_64/
