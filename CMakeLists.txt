@@ -19,8 +19,14 @@ project(${project_name} LANGUAGES C)
 
 # Add the shared library
 add_library(${project_name} SHARED 
+            "./source/atstdlib_api.h"
+            "./source/atstdlib_ext_types.h"
+            "./source/atstdlib_linear_allocator.h"
+            "./source/atstdlib_strings.h"
+            "./source/atstdlib_types.h"
             "./source/atstdlib.h"
             "./source/linear_allocation.c"
+            "./source/strings.c"
 )
 
 # Ensure ATSTDLIB_EXPORTS is defined when building the DLL

@@ -1,6 +1,7 @@
-#include "./atstdlib.h"
-#include <stdlib.h>
-#include <memory.h>
+#include <atstdlib_linear_allocator.h>
+#include <atstdlib_types.h>
+#include <stdlib.h> // free()
+#include <memory.h> // memset()
 
 LINEAR_ALLOCATOR create_linear_allocator(U0 *home_pointer, U64 memory_size){
     LINEAR_ALLOCATOR res;

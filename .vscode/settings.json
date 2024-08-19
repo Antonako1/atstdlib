@@ -7,6 +7,9 @@
         "stdint.h": "c",
         "limits.h": "c",
         "memory.h": "c",
-        "corecrt_memory.h": "c"
+        "corecrt_memory.h": "c",
+        "atstdlib_types.h": "c",
+        "atstdib_ext_types.h": "c",
+        "limits": "c"
     }
 }
