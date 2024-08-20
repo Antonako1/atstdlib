@@ -1,14 +1,18 @@
 #include <atstdlib_linear_allocator.h>
-#include <atstdlib_types.h>
+#include <atstdlib_error.h>
 #include <stdlib.h> // free()
 #include <memory.h> // memset()
 
-LINEAR_ALLOCATOR create_linear_allocator(U0 *home_pointer, U64 memory_size){
+ERR32 create_linear_allocator(U0 *home_pointer, U64 memory_size, LINEAR_ALLOCATOR *linear_allocator){
+    if(home_pointer == NULLPTR){
+        return ERRCODE_FAILURE;
+    }
     LINEAR_ALLOCATOR res;
     res.current_endpoint    = home_pointer;
     res.home_pointer        = home_pointer;
     res.memory_size         = memory_size;
-    return res;
+    *linear_allocator = res;
+    return ERRCODE_SUCCESS;
 }
 
 U0 *linear_allocation(U64 size, LINEAR_ALLOCATOR *linear_allocator) {
@@ -28,4 +32,6 @@ U0 reset_linear_memory(LINEAR_ALLOCATOR *linear_allocator){
 
 U0 free_linear_memory(LINEAR_ALLOCATOR *linear_allocator){
     free(linear_allocator->home_pointer);
+    linear_allocator->home_pointer = NULLPTR;
+    linear_allocator->current_endpoint = NULLPTR;
 }

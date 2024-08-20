@@ -10,6 +10,10 @@
         "corecrt_memory.h": "c",
         "atstdlib_types.h": "c",
         "atstdib_ext_types.h": "c",
-        "limits": "c"
+        "limits": "c",
+        "atstdlib_linear_allocator.h": "c",
+        "float.h": "c",
+        "atstdlib_api.h": "c",
+        "atstdlib_memory.h": "c"
     }
 }

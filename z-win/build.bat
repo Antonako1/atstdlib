@@ -4,7 +4,7 @@ setlocal
 cd /d %~dp0
 call .\scripts\msvs-dev-env.bat
 cd ..\..
-COPY .\source\atstdlib.h .\test
+COPY .\source\*.h .\test
 ECHO Building project...
 
 

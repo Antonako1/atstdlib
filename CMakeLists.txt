@@ -16,17 +16,17 @@ set(project_name "atstdlib")
 
 # Define the project
 project(${project_name} LANGUAGES C)
-
+include_directories("./source")
 # Add the shared library
 add_library(${project_name} SHARED 
             "./source/atstdlib_api.h"
             "./source/atstdlib_ext_types.h"
             "./source/atstdlib_linear_allocator.h"
-            "./source/atstdlib_strings.h"
             "./source/atstdlib_types.h"
             "./source/atstdlib.h"
+            "./source/atstdlib_array.h"
             "./source/linear_allocation.c"
-            "./source/strings.c"
+            "./source/array.c"
 )
 
 # Ensure ATSTDLIB_EXPORTS is defined when building the DLL
@@ -71,7 +71,7 @@ endif()
 
 # Add test executable
 add_executable(test_exec "./test/test.c")
-
+include_directories("./test")
 # Link the test executable with the shared library
 target_link_libraries(test_exec PRIVATE ${project_name})
 

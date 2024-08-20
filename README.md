@@ -2,6 +2,15 @@ ATSTDLIB for C. x86_64
 
 NOTE: ATSTDIB -> ATSTDLIB
 
+## Usage with CMake
+```shell
+# Include headers
+include_directories("./atstdlib/include")
+
+# Link the test executable with the shared library
+target_link_libraries(project_name PRIVATE atstdlib)
+```
+
 Build and run
 
     Windows, visual studio:
