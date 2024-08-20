@@ -87,4 +87,43 @@ ATSTDLIB_API ERR32 arr_shift(ARRAY *arr);
 ///         ERRCODE_FAILURE             -- Popping from an empty array
 ATSTDLIB_API ERR32 arr_pop(ARRAY *arr);
 
+/// @brief Returns unsigned value at index
+/// @param arr Pointer to ARRAY
+/// @param index Index
+/// @return Value at location. Will not check for overflow
+ATSTDLIB_API U64 uarr_at_index(ARRAY *arr, U64 index);
+
+/// @brief Returns signed value at index
+/// @param arr Pointer to ARRAY
+/// @param index Index
+/// @return Value at location. Will not check for overflow
+ATSTDLIB_API I64 iarr_at_index(ARRAY *arr, U64 index);
+
+/// @brief Replaces value of element at given index with unsigned value
+/// @param arr Pointer to ARRAY
+/// @param index Index
+/// @param value Value to replace with
+/// @return ERRCODE_SUCCESS             -- Succesfully replaced
+///         ERRCODE_FAILURE             -- Invalid index
+ATSTDLIB_API ERR32 ureplace_value_to_index(ARRAY *arr, U64 index, U64 value);
+
+
+/// @brief Replaces value of element at given index with signed value
+/// @param arr Pointer to ARRAY
+/// @param index Index
+/// @param value Value to replace with
+/// @return ERRCODE_SUCCESS             -- Succesfully replaced
+///         ERRCODE_FAILURE             -- Invalid index
+ATSTDLIB_API ERR32 ireplace_value_to_index(ARRAY *arr, U64 index, I64 value);
+
+/// @brief Pushes value to the index given. Values to the right of index will be pushed right
+/// @param arr Pointer to ARRAY
+/// @param index Index where to insert. NOTE: IF LARGER THAN ARRAY SIZE, NULLPTR ENTRIES WILL BE CREATED AS BUFFER
+/// @param value Value of new entry
+/// @return ERRCODE_SUCCESS             -- Succesfully replaced
+///         ERRCODE_MEMORY_ALLOCATION   -- Error with memory allocation.
+///         ERRCODE_FAILURE             -- TODO:
+ATSTDLIB_API ERR32 upush_value_to_index(ARRAY *arr, U64 index, I64 value);
+
+ATSTDLIB_API ERR32 ipush_value_to_index(ARRAY *arr, U64 index, U64 value);
 #endif //  ATSTDLIB_ARRAY_H

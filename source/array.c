@@ -93,7 +93,6 @@ ERR32 arr_pop(ARRAY *arr){
     }
     return ERRCODE_SUCCESS;
 }
-#include <stdio.h>
 ERR32 arr_shift(ARRAY *arr){
     if(arr->length - 1 < 0){
         return ERRCODE_FAILURE;
@@ -107,5 +106,32 @@ ERR32 arr_shift(ARRAY *arr){
     if (new_contents == NULLPTR) {
         return ERRCODE_MEMORY_ALLOCATION;
     }
+    return ERRCODE_SUCCESS;
+}
+
+U64 uarr_at_index(ARRAY *arr, U64 index){
+    return *arr->contents[index];
+}
+
+I64 iarr_at_index(ARRAY *arr, U64 index){
+    return *arr->contents[index];
+}
+
+ERR32 ureplace_value_to_index(ARRAY *arr, U64 index, U64 value){
+    if(index > arr->length){
+        return ERRCODE_FAILURE;
+    }
+    *arr->contents[index] = value;
+    return ERRCODE_SUCCESS;
+}
+ERR32 ireplace_value_to_index(ARRAY *arr, U64 index, I64 value){
+    if(index > arr->length){
+        return ERRCODE_FAILURE;
+    }
+    *arr->contents[index] = value;
+    return ERRCODE_SUCCESS;
+}
+
+ERR32 upush_value_to_index(ARRAY *arr, U64 index, I64 value){
     return ERRCODE_SUCCESS;
 }
