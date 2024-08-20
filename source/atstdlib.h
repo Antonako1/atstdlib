@@ -21,7 +21,6 @@
 ---*/
 #ifdef ATSTDLIB_USE_TYPES
 #   include <atstdlib_types.h>
-#   include <atstdlib_strings.h>
 #   ifdef ATSTDLIB_USE_EXTENDED_TYPES
 #       include <atstdlib_ext_types.h>
 #   endif // ATSTDLIB_USE_EXTENDED_TYPES
