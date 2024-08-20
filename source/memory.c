@@ -1,12 +1,10 @@
 #include <atstdlib_memory.h>
 #include <stdlib.h>
 
-ERR32 atstd_realloc(U0 *block, U64 size){
-    U64 *temp = block;
-    realloc(temp, size);
-    if(temp == NULLPTR){
-        return ERRCODE_FAILURE;
+U0 *atstd_realloc(U0 *block, U64 size){
+    U64 *temp = realloc(block, size);
+    if (temp == NULLPTR) {
+        return NULLPTR;
     }
-    block = temp;
-    return ERRCODE_SUCCESS;
+    return temp;
 }

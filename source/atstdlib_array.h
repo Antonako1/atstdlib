@@ -14,13 +14,28 @@
     Dynamic array
 
     Array usage/definition:
-    ARRAY arr = create_arr(sizeof(U8)); 
+        // dynamic array test
+        ARRAY arr = create_arr(sizeof(I32));
+        uarr_push_back(&arr, 32);
+        iarr_push_back(&arr, -64);
+        uarr_push_back(&arr, 128);
+        uarr_push_back(&arr, 256);
+        for(int i = 0; i < arr_length(&arr);i++){
+            printf("%d. %lld\n", i, *arr.contents[i]);
+        }
+        printf("~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+        arr_pop(&arr);
+        arr_shift(&arr);
+        for(int i = 0; i < arr_length(&arr);i++){
+            printf("%d. %lld\n", i, *arr.contents[i]);
+        }
+        arr_free(&arr);
 ---*/
 
 typedef struct ARRAY {
-    U0 **contents;
+    U64 **contents;
     U64 length;
-    U64 item_entry_size;
+    U64 item_entry_size;    // SIZE HELD IN BYTES
 } ARRAY;
 
 /// @brief Creates a dynamic array
@@ -28,7 +43,7 @@ typedef struct ARRAY {
 /// @return NULLPTR initialzied empty array
 ATSTDLIB_API ARRAY create_arr(U64 size_of_item_entry);
 
-/// @brief Pushes back an item to given array. For arrays that hold unsigned values
+/// @brief Pushes back an item to given array. For unsigned values
 /// @param arr Pointer to array
 /// @param value Value to be pushed back
 /// @return ERRCODE_INVALID_VALUE_SIZE  -- Value you are trying to push is over the array limit
@@ -36,7 +51,7 @@ ATSTDLIB_API ARRAY create_arr(U64 size_of_item_entry);
 ///         ERRCODE_SUCCESS             -- Succesfully pushed back
 ATSTDLIB_API ERR32 uarr_push_back(ARRAY *arr, U64 value);
 
-/// @brief Pushes back an item to given array. For arrays that hold signed values
+/// @brief Pushes back an item to given array. For signed values
 /// @param arr Pointer to array
 /// @param value Value to be pushed back
 /// @return ERRCODE_INVALID_VALUE_SIZE  -- Value you are trying to push is over the array limit
@@ -48,6 +63,28 @@ ATSTDLIB_API ERR32 iarr_push_back(ARRAY *arr, I64 value);
 /// @param arr Pointer to array
 ATSTDLIB_API U0 arr_free(ARRAY *arr);
 
-ATSTDLIB_API U64 arr_length(U0 **arr);
+/// @brief Returns array's length
+/// @param arr Pointer to ARRAY
+/// @return Returns array's length
+ATSTDLIB_API U64 arr_length(ARRAY *arr);
+
+/// @brief Returns single item size in bytes
+/// @param arr Pointer to ARRAY
+/// @return single item size in bytes
+ATSTDLIB_API U64 arr_item_size(ARRAY *arr);
+
+/// @brief Removes element from the start of the array
+/// @param arr Array where to delete from
+/// @return ERRCODE_MEMORY_ALLOCATION   -- Error with memory allocation.
+///         ERRCODE_SUCCESS             -- Succesfully shifted
+///         ERRCODE_FAILURE             -- Shifting from an empty array
+ATSTDLIB_API ERR32 arr_shift(ARRAY *arr);
+
+/// @brief Removes element from the end of the array
+/// @param arr Array where to delete from
+/// @return ERRCODE_MEMORY_ALLOCATION   -- Error with memory allocation.
+///         ERRCODE_SUCCESS             -- Succesfully popped
+///         ERRCODE_FAILURE             -- Popping from an empty array
+ATSTDLIB_API ERR32 arr_pop(ARRAY *arr);
 
 #endif //  ATSTDLIB_ARRAY_H

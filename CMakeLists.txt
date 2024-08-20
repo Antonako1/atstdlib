@@ -25,8 +25,11 @@ add_library(${project_name} SHARED
             "./source/atstdlib_types.h"
             "./source/atstdlib.h"
             "./source/atstdlib_array.h"
+            "./source/atstdlib_memory.h"
+            "./source/atstdlib_error.h"
             "./source/linear_allocation.c"
             "./source/array.c"
+            "./source/memory.c"
 )
 
 # Ensure ATSTDLIB_EXPORTS is defined when building the DLL

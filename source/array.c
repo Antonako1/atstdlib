@@ -7,9 +7,36 @@ ARRAY create_arr(U64 size_of_item_entry){
     res.contents = NULLPTR;
     res.length = 0;
     res.item_entry_size = size_of_item_entry;
+    return res;
 }
 
 
+ERR32 iarr_push_back(ARRAY *arr, I64 value){
+    U32 bit_count = 0;
+    I64 temp = value;
+    while (temp > 0) {
+        bit_count++;
+        temp >>= 1;
+    }
+    U32 byte_count = (bit_count + 7) / 8;
+    if(byte_count > arr->item_entry_size){
+        return ERRCODE_INVALID_VALUE_SIZE;
+    }
+    U64 **new_contents = (U64**)atstd_realloc(arr->contents, (arr->length + 1) * sizeof(U64 *));
+    if (new_contents == NULLPTR) {
+        return ERRCODE_MEMORY_ALLOCATION;
+    }
+    arr->contents = new_contents;
+
+    U64 *allocation = (U64*)malloc((size_t)(arr->item_entry_size*8));
+    if (allocation == NULLPTR) {
+        return ERRCODE_MEMORY_ALLOCATION;
+    }
+    *allocation = value;
+    
+    arr->contents[arr->length++] = allocation;
+    return ERRCODE_SUCCESS;
+}
 ERR32 uarr_push_back(ARRAY *arr, U64 value){
     U32 bit_count = 0;
     U64 temp = value;
@@ -17,13 +44,23 @@ ERR32 uarr_push_back(ARRAY *arr, U64 value){
         bit_count++;
         temp >>= 1;
     }
-    if((bit_count / 8) > arr->item_entry_size){
+    U32 byte_count = (bit_count + 7) / 8;
+    if(byte_count > arr->item_entry_size){
         return ERRCODE_INVALID_VALUE_SIZE;
     }
-    // Reallocate size for arr->contents and add it as pointer, and malloc an entry for value and add it to the new realloc position
-    // atstd_realloc();
-    // malloc();
-    arr->length++;
+    U64 **new_contents = (U64**)atstd_realloc(arr->contents, (arr->length + 1) * sizeof(U64 *));
+    if (new_contents == NULLPTR) {
+        return ERRCODE_MEMORY_ALLOCATION;
+    }
+    arr->contents = new_contents;
+
+    U64 *allocation = (U64*)malloc((size_t)(arr->item_entry_size*8));
+    if (allocation == NULLPTR) {
+        return ERRCODE_MEMORY_ALLOCATION;
+    }
+    *allocation = value;
+    
+    arr->contents[arr->length++] = allocation;
     return ERRCODE_SUCCESS;
 }
 
@@ -38,6 +75,37 @@ U0 arr_free(ARRAY *arr) {
     arr->length = 0;
 }
 
-U64 arr_length(U0 **arr){
+U64 arr_length(ARRAY *arr){
+    return arr->length;
+}
+U64 arr_item_size(ARRAY *arr){
+    return arr->item_entry_size;
+}
 
+ERR32 arr_pop(ARRAY *arr){
+    if(arr->length - 1 < 0){
+        return ERRCODE_FAILURE;
+    }
+    free(arr->contents[--arr->length]);
+    U64 **new_contents = (U64**)atstd_realloc(arr->contents, (arr->length) * sizeof(U64 *));
+    if (new_contents == NULLPTR) {
+        return ERRCODE_MEMORY_ALLOCATION;
+    }
+    return ERRCODE_SUCCESS;
+}
+#include <stdio.h>
+ERR32 arr_shift(ARRAY *arr){
+    if(arr->length - 1 < 0){
+        return ERRCODE_FAILURE;
+    }
+    free(arr->contents[0]);
+    for (U64 i = 1; i < arr->length; i++){
+        arr->contents[i-1] = arr->contents[i];
+    }
+    arr->length--;
+    U64 **new_contents = (U64**)atstd_realloc(arr->contents, (arr->length) * sizeof(U64 *));
+    if (new_contents == NULLPTR) {
+        return ERRCODE_MEMORY_ALLOCATION;
+    }
+    return ERRCODE_SUCCESS;
 }
