@@ -59,8 +59,9 @@ I32 main(I32 argc, const I8 *argv){
         }
 
         printf("%lld\n", iarr_at_index(&arr, 0));
-        ireplace_value_to_index(&arr, 0, 100);
+        ireplace_value_at_index(&arr, 0, 0xFF);
         printf("%lld\n", iarr_at_index(&arr, 0));
+        upush_value_to_index(&arr, 1, 0x7766);
         for(int i = 0; i < arr_length(&arr);i++){
             printf("%d. %lld\n", i, *arr.contents[i]);
         }

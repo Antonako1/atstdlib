@@ -12,6 +12,11 @@
 
 /*+++
     Dynamic array
+        Dynamic array needs to have item size defined in bytes.
+        It can hold both unsigned and signed values at the same time.
+        You need to use the approriate functions for these (prefexied with "u" for unsigned, "i" for signed).
+        You need to free the array after usage using arr_free() function.
+        ERR32 checks are not necessary, neither are they discouraged.
 
     Array usage/definition:
         // dynamic array test
@@ -105,7 +110,7 @@ ATSTDLIB_API I64 iarr_at_index(ARRAY *arr, U64 index);
 /// @param value Value to replace with
 /// @return ERRCODE_SUCCESS             -- Succesfully replaced
 ///         ERRCODE_FAILURE             -- Invalid index
-ATSTDLIB_API ERR32 ureplace_value_to_index(ARRAY *arr, U64 index, U64 value);
+ATSTDLIB_API ERR32 ureplace_value_at_index(ARRAY *arr, U64 index, U64 value);
 
 
 /// @brief Replaces value of element at given index with signed value
@@ -114,9 +119,39 @@ ATSTDLIB_API ERR32 ureplace_value_to_index(ARRAY *arr, U64 index, U64 value);
 /// @param value Value to replace with
 /// @return ERRCODE_SUCCESS             -- Succesfully replaced
 ///         ERRCODE_FAILURE             -- Invalid index
-ATSTDLIB_API ERR32 ireplace_value_to_index(ARRAY *arr, U64 index, I64 value);
+ATSTDLIB_API ERR32 ireplace_value_at_index(ARRAY *arr, U64 index, I64 value);
 
-/// @brief Pushes value to the index given. Values to the right of index will be pushed right
+
+
+/*+++
+    BEHAVIOUR FOR TWO FOLLOWING FUNCTIONS:
+    ADDING INSIDE CURRENT ARRAY LIMITS
+    0.  32
+    1.  64
+    2.  128
+    push_value_to_index(&arr, 1, 100)
+    0.  32
+    1.  100
+    2.  64
+    3.  128
+    
+    
+    ADDING OUTSIDE CURRENT ARRAY LIMITS
+    0.  32
+    1.  64
+    2.  128
+    push_value_to_index(&arr, 5, 100)
+    0.  32
+    1.  64
+    2.  128
+    3.  0
+    4.  0
+    5.  100
+
+
+---*/
+
+/// @brief Pushes unsigned value to the index given. Values to the right of index will be pushed right
 /// @param arr Pointer to ARRAY
 /// @param index Index where to insert. NOTE: IF LARGER THAN ARRAY SIZE, NULLPTR ENTRIES WILL BE CREATED AS BUFFER
 /// @param value Value of new entry
@@ -125,5 +160,12 @@ ATSTDLIB_API ERR32 ireplace_value_to_index(ARRAY *arr, U64 index, I64 value);
 ///         ERRCODE_FAILURE             -- TODO:
 ATSTDLIB_API ERR32 upush_value_to_index(ARRAY *arr, U64 index, I64 value);
 
+/// @brief Pushes signed value to the index given. Values to the right of index will be pushed right
+/// @param arr Pointer to ARRAY
+/// @param index Index where to insert. NOTE: IF LARGER THAN ARRAY SIZE, NULLPTR ENTRIES WILL BE CREATED AS BUFFER
+/// @param value Value of new entry
+/// @return ERRCODE_SUCCESS             -- Succesfully replaced
+///         ERRCODE_MEMORY_ALLOCATION   -- Error with memory allocation.
+///         ERRCODE_FAILURE             -- TODO:
 ATSTDLIB_API ERR32 ipush_value_to_index(ARRAY *arr, U64 index, U64 value);
 #endif //  ATSTDLIB_ARRAY_H

@@ -101,8 +101,7 @@ ERR32 arr_shift(ARRAY *arr){
     for (U64 i = 1; i < arr->length; i++){
         arr->contents[i-1] = arr->contents[i];
     }
-    arr->length--;
-    U64 **new_contents = (U64**)atstd_realloc(arr->contents, (arr->length) * sizeof(U64 *));
+    U64 **new_contents = (U64**)atstd_realloc(arr->contents, (--arr->length) * sizeof(U64 *));
     if (new_contents == NULLPTR) {
         return ERRCODE_MEMORY_ALLOCATION;
     }
@@ -117,14 +116,14 @@ I64 iarr_at_index(ARRAY *arr, U64 index){
     return *arr->contents[index];
 }
 
-ERR32 ureplace_value_to_index(ARRAY *arr, U64 index, U64 value){
+ERR32 ureplace_value_at_index(ARRAY *arr, U64 index, U64 value){
     if(index > arr->length){
         return ERRCODE_FAILURE;
     }
     *arr->contents[index] = value;
     return ERRCODE_SUCCESS;
 }
-ERR32 ireplace_value_to_index(ARRAY *arr, U64 index, I64 value){
+ERR32 ireplace_value_at_index(ARRAY *arr, U64 index, I64 value){
     if(index > arr->length){
         return ERRCODE_FAILURE;
     }
@@ -133,5 +132,7 @@ ERR32 ireplace_value_to_index(ARRAY *arr, U64 index, I64 value){
 }
 
 ERR32 upush_value_to_index(ARRAY *arr, U64 index, I64 value){
+    
+    
     return ERRCODE_SUCCESS;
 }
