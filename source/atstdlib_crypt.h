@@ -28,7 +28,6 @@ U32 urand_range(U32 range_min, U32 range_max);
 
 
 /*+++
-// TODO: EVERYTHING HERE
 Basic crypt functions.
 
 Security not quaranteed. Don't use on sensitive data!
