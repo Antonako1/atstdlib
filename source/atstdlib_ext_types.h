@@ -32,9 +32,9 @@
     } I256;
 
     typedef struct U512 {
-        U64 parts[4];
+        U64 parts[8];
     } U512;
     typedef struct I512 {
-        I64 parts[4];
+        I64 parts[8];
     } I512;
 #endif //  ATSTDLIB_EXT_TYPES_H

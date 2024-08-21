@@ -20,6 +20,7 @@
         "xlocmon": "c",
         "xtr1common": "c",
         "xutility": "c",
-        "atstdlib_ext_types.h": "c"
+        "atstdlib_ext_types.h": "c",
+        "atstdlib_list.h": "c"
     }
 }

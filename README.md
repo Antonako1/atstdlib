@@ -1,6 +1,34 @@
 ATSTDLIB for C. x86_64
 
-NOTE: ATSTDIB -> ATSTDLIB
+## Features
+
+ - atstdlib.h
+    - Holds all header files
+ - atstdlib_linear_allocator.h
+    - Linear allocator
+ - atstdlib_list.h
+    - Dynamic lists. Like vectors, but memory isn't allocated in one big chunk.
+ - atstdlib_types.h & atstdlib_ext_types.h
+    -   | ATSTDLIB_TYPE | C |
+        |-|-|
+        |NULLPTR|NULL|
+        |U0|void|
+        |BOOLEAN|bool|
+        |TRUE|true|
+        |FALSE|false|
+        |{U OR I}8|char|
+        |{U OR I}16|short|
+        |{U OR I}32|int|
+        |{U OR I}64|long long|
+        |F32|float|
+        |F64|double|
+        |F80|double|
+        |-|-|
+        |ATSTDLIB_EXT_TYPE|C|
+        |{U OR I}128|long long[2]|
+        |{U OR I}192|long long[3]|
+        |{U OR I}256|long long[4]|
+        |{U OR I}512|long long[8]|
 
 ## Usage with CMake
 ```shell

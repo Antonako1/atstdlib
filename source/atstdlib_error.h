@@ -6,8 +6,9 @@ typedef unsigned int ERR32;
 #define ERRCODE_SUCCESS                 1
 #define ERRCODE_UNDEFINED               2
 
-// ERRORCODES FOR ATSTDLIB_ARRAY_H
+// ERRORCODES FOR ATSTDLIB_LIST_H
 #define ERRCODE_INVALID_VALUE_SIZE      0x03
 #define ERRCODE_MEMORY_ALLOCATION       0x04
+
 
 #endif // ATSTDLIB_ERROR_H

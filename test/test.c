@@ -42,30 +42,37 @@ I32 main(I32 argc, const I8 *argv){
     }
 
     {
-        // dynamic array test
-        ARRAY arr = create_arr(sizeof(I32));
-        uarr_push_back(&arr, 32);
-        iarr_push_back(&arr, -64);
-        uarr_push_back(&arr, 128);
-        uarr_push_back(&arr, 256);
-        for(int i = 0; i < arr_length(&arr);i++){
-            printf("%d. %lld\n", i, *arr.contents[i]);
+        // dynamic list test
+        LIST list = create_list(sizeof(I32));
+        ulist_push_back(&list, 32);
+        ilist_push_back(&list, -64);
+        ulist_push_back(&list, 128);
+        ulist_push_back(&list, 256);
+        for(int i = 0; i < list_length(&list);i++){
+            printf("%d. %lld\n", i, *list.contents[i]);
         }
         printf("~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-        arr_pop(&arr);
-        arr_shift(&arr);
-        for(int i = 0; i < arr_length(&arr);i++){
-            printf("%d. %lld\n", i, *arr.contents[i]);
+        list_pop(&list);
+        list_shift(&list);
+        for(int i = 0; i < list_length(&list);i++){
+            printf("%d. %lld\n", i, *list.contents[i]);
         }
 
-        printf("%lld\n", iarr_at_index(&arr, 0));
-        ireplace_value_at_index(&arr, 0, 0xFF);
-        printf("%lld\n", iarr_at_index(&arr, 0));
-        upush_value_to_index(&arr, 1, 0x7766);
-        for(int i = 0; i < arr_length(&arr);i++){
-            printf("%d. %lld\n", i, *arr.contents[i]);
+        printf("%lld\n", ilist_at_index(&list, 0));
+        ireplace_value_at_index(&list, 0, 0xFF);
+        printf("%lld\n", ilist_at_index(&list, 0));
+        upush_value_to_index(&list, 1, 13);
+        upush_value_to_index(&list, 2, 11);
+        upush_value_to_index(&list, 5, 88);
+        pop_from_index(&list, 4);
+        for(int i = 0; i < list_length(&list);i++){
+            printf("%d. %lld\n", i, *list.contents[i]);
         }
-        arr_free(&arr);
+        list_free(&list);
     }
+    {
+        
+    }
+    printf("END\n");
     return 0;
 }
