@@ -27,9 +27,13 @@ add_library(${project_name} SHARED
             "./source/atstdlib_list.h"
             "./source/atstdlib_memory.h"
             "./source/atstdlib_error.h"
+            "./source/atstdlib_regex.h"
+            "./source/atstdlib_crypt.h"
             "./source/linear_allocation.c"
             "./source/list.c"
             "./source/memory.c"
+            "./source/crypt.c"
+            "./source/regex.c"
 )
 
 # Ensure ATSTDLIB_EXPORTS is defined when building the DLL
@@ -74,7 +78,7 @@ endif()
 
 # Add test executable
 add_executable(test_exec "./test/test.c")
-include_directories("./test")
+include_directories("./source")
 # Link the test executable with the shared library
 target_link_libraries(test_exec PRIVATE ${project_name})
 

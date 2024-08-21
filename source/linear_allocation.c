@@ -11,7 +11,7 @@ ERR32 create_linear_allocator(U0 *home_pointer, U64 memory_size, LINEAR_ALLOCATO
     res.current_endpoint    = home_pointer;
     res.home_pointer        = home_pointer;
     res.memory_size         = memory_size;
-    *linear_allocator = res;
+    *linear_allocator       = res;
     return ERRCODE_SUCCESS;
 }
 

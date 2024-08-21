@@ -21,6 +21,11 @@
         "xtr1common": "c",
         "xutility": "c",
         "atstdlib_ext_types.h": "c",
-        "atstdlib_list.h": "c"
+        "atstdlib_list.h": "c",
+        "atstdlib_crypt.h": "c",
+        "corecrt.h": "c",
+        "iso646.h": "c",
+        "atstdlib_regex.h": "c",
+        "atomic": "c"
     }
 }

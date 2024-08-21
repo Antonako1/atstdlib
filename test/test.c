@@ -71,7 +71,17 @@ I32 main(I32 argc, const I8 *argv){
         list_free(&list);
     }
     {
-        
+        // crypt header tests
+        // randseed(1000);
+        printf("Random number: %lu, %lu\n", urand(), urand_range(10, 1000));
+
+        U32 *key = generate_256_key("a");
+            printf("256-bit key: 0x");
+        for(int i = 0; i < WORDCOUNT; i++){
+            printf("%lx", key[i]);
+        }
+        printf("\n");
+        free(key);
     }
     printf("END\n");
     return 0;
