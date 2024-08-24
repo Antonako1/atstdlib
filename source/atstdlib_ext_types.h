@@ -5,11 +5,14 @@
 
 
 
-    {U|I}{128|192|256|512}
 ---*/
 #ifndef ATSTDLIB_EXT_TYPES_H
 #define ATSTDLIB_EXT_TYPES_H
 #include <atstdlib_types.h>
+/*+++
+Included types are:
+    {U|I}{128|192|256|512}
+---*/
     #define _128_PARTS 2
     typedef struct U128 {
         U64 parts[_128_PARTS];

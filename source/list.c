@@ -1,3 +1,8 @@
+/*+++
+    ATSTDLIB LIST C SOURCE - Antonako1
+    
+    Licensed under MIT
+---*/
 #include <atstdlib_list.h>
 #include <stdlib.h>
 #include <atstdlib_memory.h>

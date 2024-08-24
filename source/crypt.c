@@ -1,11 +1,19 @@
+/*+++
+    ATSTDLIB CRYPT C SOURCE - Antonako1
+    
+    Licensed under MIT
+---*/
 #include <atstdlib_crypt.h>
 #include <atstdlib_ext_types.h>
 #include <time.h>
 #include <malloc.h>
 #include <string.h>
 #define WORDSIZE            4
-#define EIGHT_BYTE_MINIMUM 9223372036854775808Ui64
 #define MAGIC 0xFF4F
+#define MAXSTRLEN 255
+/*+++
+Somewhat working Rijndael algorithm
+---*/
 
 const U8 sbox[] = {
     0x63, 	0x7c, 	0x77, 	0x7b, 	0xf2, 	0x6b, 	0x6f, 	0xc5, 	0x30, 	0x01, 	0x67, 	0x2b, 	0xfe, 	0xd7, 	0xab, 	0x76,
@@ -86,21 +94,20 @@ void expand_key(U32 *expanded_key, U256 *generate_from) {
 
 void initialize_seeds_part(U256 *seed, U16 index, const U8 *pass){
     for(size_t i = 0; i < strlen(pass); i++){
-        seed->parts[index] *= pass[i] * (index + 1) / (i+1) * MAGIC * 2;
+        seed->parts[index] ^= (pass[i] * (index + 1)) | (i+1) & MAGIC * 2;
     }
     if(seed->parts[index] >= U64_MAX){
-        seed->parts[index] /= pass[3] * (index + 1);
+        seed->parts[index] %= (pass[3] * (index + 1)) ^ MAGIC;
     }
     while(seed->parts[index] < EIGHT_BYTE_MINIMUM){
-        seed->parts[index] *= seed->parts[index] * MAGIC * 2 / 0xAD * (index + 1);
+        seed->parts[index] *= seed->parts[index] * MAGIC * 2 ^ 0xAD * (index + 1);
     }
 }
-// 0xb6cec84845561a80aa5c9cda8340000092974ae9c8c5400d8b0ec1c4c7f0000
-// 0xb6cec84845561a80aa5c9cda8340000092974ae9c8c5400d8b0ec1c4c7f0000
-// 0xb6cec84845561a80a69cd09babb7a800d06cb0b3f513c800d8b0ec1c4c7f0000
-// 0x842cbdf9bd02ebe5fc99cca9c6929f0091ebfcc0f242b3afeb6915ff79fd3000
-// 0xa89dadfcec4cda08ab4d497d9f21c300d2b2ec71c03291d8a9538bacacd81000
+
 U32 *generate_256_key(const U8 *input_string){
+    if(strlen(input_string) > 255){
+        return NULLPTR;
+    }
     U32 *key = malloc(sizeof(U32) * WORDCOUNT);
     U256 large_key_input;
     for(I16 i = 0; i < _256_PARTS; i++){
@@ -111,6 +118,9 @@ U32 *generate_256_key(const U8 *input_string){
     return key;
 }
 
+U0 free_256_key(U32 *key){
+    free(key);
+}
 
 /*+++
 RAND FUNCTIONS

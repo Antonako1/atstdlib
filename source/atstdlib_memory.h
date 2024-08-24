@@ -1,3 +1,8 @@
+/*+++
+    ATSTDLIB MEMORY HEADER - Antonako1
+    
+    Licensed under MIT
+---*/
 #ifndef ATSTDLIB_MEMORY_H
 #define ATSTDLIB_MEMORY_H
 #include <atstdlib_types.h>

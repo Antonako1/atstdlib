@@ -26,6 +26,8 @@
         "corecrt.h": "c",
         "iso646.h": "c",
         "atstdlib_regex.h": "c",
-        "atomic": "c"
+        "atomic": "c",
+        "atstdlib_error.h": "c",
+        "xstring": "cpp"
     }
 }

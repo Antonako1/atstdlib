@@ -1,3 +1,8 @@
+/*+++
+    ATSTDLIB LINEAR ALLOCATOR C SOURCE - Antonako1
+    
+    Licensed under MIT
+---*/
 #include <atstdlib_linear_allocator.h>
 #include <atstdlib_error.h>
 #include <stdlib.h> // free()

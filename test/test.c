@@ -1,6 +1,7 @@
 #include "atstdlib.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 I32 main(I32 argc, const I8 *argv){
     printf("HI\n");
@@ -75,13 +76,39 @@ I32 main(I32 argc, const I8 *argv){
         // randseed(1000);
         printf("Random number: %lu, %lu\n", urand(), urand_range(10, 1000));
 
-        U32 *key = generate_256_key("a");
+        U32 *key = generate_256_key("TESTHASH123");
+        if(key != NULLPTR){
             printf("256-bit key: 0x");
-        for(int i = 0; i < WORDCOUNT; i++){
-            printf("%lx", key[i]);
+            for(int i = 0; i < WORDCOUNT; i++){
+                printf("%lx", key[i]);
+            }
+            printf("\n");
+            free(key);
         }
-        printf("\n");
-        free(key);
+    }
+    {
+        // regex
+        /*
+        Example 1:
+            Input: a+b*(c^d-e)^(f+g*h)-i
+            Output: abcd^e-fgh*+^*+i-
+            Explanation: Infix to postfix
+
+        Example 2:
+            Input: (p+q)*(m-n)
+            Output: pq+mn-*
+            Explanation: Infix to postfix
+        */
+        U8 *regex = "(p+q)*(m-n)";
+        U8 *input = "Hello, World!";
+        BOOLEAN test = check_str_against_regex(regex, input);
+    }
+    {
+        printf("STRLEN: %llu, %zd\n", ustrlen("Hi"), strlen("Hi"));
+        printf("WSTRLEN: %llu, %zd\n", uwstrlen(L"Hi"), wcslen(L"Hi"));
+        printf("STRNLEN: %llu, %zd\n", ustrnlen("Hi12345", 5), strnlen("Hi12345", 5));
+        printf("WSTRNLEN: %llu, %zd\n", uwstrnlen(L"Hi", 5), wcsnlen(L"Hi", 5));
+
     }
     printf("END\n");
     return 0;

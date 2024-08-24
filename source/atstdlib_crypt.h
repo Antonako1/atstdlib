@@ -35,9 +35,13 @@ Security not quaranteed. Don't use on sensitive data!
 #define WORDCOUNT   8 // Size of 256_key array
 
 /// @brief Generates 256-bit key
-/// @param input_string String to generate from
-/// @return WORDCOUNT long array of U32. Allocated in memory
-/// @note Return type is allocated in memory. Remember to free it!
+/// @param input_string String to generate from. Max length: 255
+/// @return WORDCOUNT long array of U32. On failure NULLPTR is returned
+/// @note 256-bit key allocated into heap
 U32 *generate_256_key(const U8 *input_string);
+
+/// @brief Frees key from memory
+/// @param key Pointer to key
+U0 free_256_key(U32 *key);
 
 #endif // ATSTDLIB_CRYPT_H

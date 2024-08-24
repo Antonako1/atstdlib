@@ -98,6 +98,16 @@ MAX AND MIN DEFINITIONS
 #define F64_MAX              1.7976931348623158e+308
 #define F80_MAX              F64_MAX
 
-
+/*+++
+Minimum numbers needed to fill out given byte size
+---*/
+#define EIGHT_BYTE_MINIMUM      0x1000000000000000
+#define SEVEN_BYTE_MINIMUM      0x10000000000000
+#define SIX_BYTE_MINIMUM        0x100000000000
+#define FIVE_BYTE_MINIMUM       0x1000000000
+#define FOUR_BYTE_MINIMUM       0x10000000
+#define THREE_BYTE_MINIMUM      0x100000
+#define TWO_BYTE_MINIMUM        0x1000
+#define ONE_BYTE_MINIMUM        0x10
 
 #endif // ATSTDLIB_TYPES_H
