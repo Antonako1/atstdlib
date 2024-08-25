@@ -120,6 +120,7 @@ U32 *generate_256_key(const U8 *input_string){
 
 U0 free_256_key(U32 *key){
     free(key);
+    key = NULLPTR;
 }
 
 /*+++
