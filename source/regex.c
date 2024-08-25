@@ -5,7 +5,6 @@
 ---*/
 #include <atstdlib_regex.h>
 #include <atstdlib_string.h>
-#include <string.h>
 
 /*+++
 THOMPSON NFA REGEX IMPLEMENTATION

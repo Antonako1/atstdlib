@@ -104,6 +104,7 @@ I32 main(I32 argc, const I8 *argv){
         BOOLEAN test = check_str_against_regex(regex, input);
     }
     {
+        // str tests
         printf("STRLEN: %llu, %zd\n", ustrlen("Hi"), strlen("Hi"));
         printf("WSTRLEN: %llu, %zd\n", uwstrlen(L"Hi"), wcslen(L"Hi"));
         printf("STRNLEN: %llu, %zd\n", ustrnlen("Hi12345", 5), strnlen("Hi12345", 5));

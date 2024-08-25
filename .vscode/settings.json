@@ -28,6 +28,11 @@
         "atstdlib_regex.h": "c",
         "atomic": "c",
         "atstdlib_error.h": "c",
-        "xstring": "cpp"
+        "xstring": "cpp",
+        "string": "c",
+        "string.h": "c",
+        "vcruntime_string.h": "c",
+        "winapifamily.h": "c",
+        "winpackagefamily.h": "c"
     }
 }
