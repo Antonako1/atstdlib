@@ -20,6 +20,9 @@ typedef unsigned short      U16;
 typedef unsigned int        U32;
 typedef unsigned long long  U64;
 
+typedef unsigned char       CHAR;
+typedef unsigned short      WCHAR;
+
 typedef signed char         I8;
 typedef signed short        I16;
 typedef signed int          I32;
@@ -109,5 +112,9 @@ Minimum numbers needed to fill out given byte size
 #define THREE_BYTE_MINIMUM      0x100000
 #define TWO_BYTE_MINIMUM        0x1000
 #define ONE_BYTE_MINIMUM        0x10
+
+
+
+#define URSIZE_MAX (U64_MAX >> 1)
 
 #endif // ATSTDLIB_TYPES_H

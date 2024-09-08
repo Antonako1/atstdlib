@@ -2,9 +2,6 @@
     ATSTDLIB EXTENDED TYPES HEADER- Antonako1
     
     Licensed under MIT
-
-
-
 ---*/
 #ifndef ATSTDLIB_EXT_TYPES_H
 #define ATSTDLIB_EXT_TYPES_H

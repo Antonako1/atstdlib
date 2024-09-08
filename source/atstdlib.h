@@ -9,6 +9,7 @@
     Macro definitions.
     Use 1/0 to enable/disable
 ---*/
+#define ATSTDLIB_USE_ERROR              1
 #define ATSTDLIB_USE_TYPES              1   
 #define ATSTDLIB_USE_EXTENDED_TYPES     1   // CHAINED TO ATSTDLIB_TYPES
 #define ATSTDLIB_USE_LINEAR_ALLOCATORS  1   // CHAINED TO ATSTDLIB_TYPES
@@ -17,8 +18,10 @@
 #define ATSTDLIB_USE_REGEX              1   // CHAINED TO ATSTDLIB_TYPES
 #define ATSTDLIB_USE_STRING             1   // CHAINED TO ATSTDLIB_TYPES
 
+#ifdef ATSTDLIB_USE_ERROR
+#   include <atstdlib_error.h>
+#endif // ATSTDLIB_USE_ERROR
 
-#include <atstdlib_error.h>
 #ifdef ATSTDLIB_USE_TYPES
 #   include <atstdlib_types.h>
 

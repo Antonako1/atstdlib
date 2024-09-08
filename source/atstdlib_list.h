@@ -33,7 +33,7 @@
         list_pop(&list);
         list_shift(&list);
         for(int i = 0; i < list_length(&list);i++){
-            printf("%d. %lld\n", i, *list.contents[i]);
+            printf("%d. %lld\n", i, ulist_at_index(list, i));
         }
         list_free(&list);
 ---*/
@@ -127,6 +127,10 @@ ATSTDLIB_API ERR32 ireplace_value_at_index(LIST *list, U64 index, I64 value);
 
 
 /*+++
+    TWO FOLLOWING FUNCTIONS AREN'T MADE SOLIDLY.
+    RECONSIDER TWICE BEFORE USING.
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
     BEHAVIOUR FOR TWO FOLLOWING FUNCTIONS:
     ADDING INSIDE CURRENT LIST LIMITS
     0.  32
