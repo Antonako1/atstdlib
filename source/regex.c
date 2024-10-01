@@ -30,7 +30,7 @@ U8 *infix_to_postfix(U8 *str){
     s_ptr = stack;
     for(U64 i = 0; i < ustrlen(str); i++){
         U8 c = str[i];
-        printf("%c, %lld, %lld\n\n", c, num_of_alts, num_of_groups);
+        // printf("%c, %lld, %lld\n\n", c, num_of_alts, num_of_groups);
         switch(c){
         case '(': //push stack
             if(s_ptr >= stack+128) return NULLPTR;
@@ -59,7 +59,7 @@ U8 *infix_to_postfix(U8 *str){
             break;
         }
     }
-    printf("AAA: %s\n", buf);
+    // printf("AAA: %s\n", buf);
     return buf;
 }
 

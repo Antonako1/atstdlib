@@ -72,15 +72,15 @@ U64 uwstrnlen_s(const U16 *str, U64 max_size){
 }
 
 
-U8 *ustrcat(U8 *dest, U8 *src){
+// U8 *ustrcat(U8 *dest, U8 *src){
 
-}
-U16 *uwstrcat(U16 *dest, U16 *src){
-}
-ERR32 ustrcat_s(U8 *dest, U64 dstsz, U8 *src){
-    if(dstsz == 0 || dstsz > URSIZE_MAX) return ERRCODE_FAILURE;
-    if(dest == NULLPTR || src == NULLPTR) return ERRCODE_FAILURE;
-    if(ustrlen_s(dest, dstsz) + ustrlen_s(src, dstsz) > dstsz) return ERRCODE_FAILURE;
-}
-ERR32 uwstrcat_s(U16 *dest, U64 dstsz, U16 *src){}
+// }
+// U16 *uwstrcat(U16 *dest, U16 *src){
+// }
+// ERR32 ustrcat_s(U8 *dest, U64 dstsz, U8 *src){
+//     if(dstsz == 0 || dstsz > URSIZE_MAX) return ERRCODE_FAILURE;
+//     if(dest == NULLPTR || src == NULLPTR) return ERRCODE_FAILURE;
+//     if(ustrnlen_s(dest, dstsz) + ustrnlen_s(src, dstsz) > dstsz) return ERRCODE_FAILURE;
+// }
+// ERR32 uwstrcat_s(U16 *dest, U64 dstsz, U16 *src){}
 
